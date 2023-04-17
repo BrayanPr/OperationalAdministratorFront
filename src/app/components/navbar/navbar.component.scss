@@ -1,0 +1,40 @@
+nav {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    height: 80px;
+    padding: 0 20px;
+    border-bottom: solid 1px red;
+  }
+  nav img {
+    height: 50px;
+    margin-right: 20px;
+  }
+  
+  ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  li {
+    margin-left: 20px;
+  }
+  
+  a {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+  }
+  
+  a:hover {
+    background-color: #f5f5f5;
+    border-color: #999;
+  }

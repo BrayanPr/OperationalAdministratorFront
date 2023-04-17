@@ -1,0 +1,17 @@
+.container{
+    padding:2%;
+    width: 90%;
+    margin: 2.5%;
+    height: 70vh;
+    border: 1px solid red;
+    border-radius: 20px;
+}
+.left{
+    display: flex;
+    justify-content: left;
+}
+.center{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
