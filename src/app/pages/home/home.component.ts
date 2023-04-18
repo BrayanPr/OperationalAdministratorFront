@@ -12,7 +12,8 @@ export class HomeComponent {
     "name": "",
     "email": "",
     "cv": "",
-    "experience":""
+    "experience":"",
+    "englishLevel":""
   }
   constructor(private service:UserService){
     service.getProfile().subscribe((res:any)=>{

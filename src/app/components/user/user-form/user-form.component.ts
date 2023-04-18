@@ -13,6 +13,8 @@ export class UserFormComponent {
 
   @Output() cancel = new EventEmitter<any>();
 
+  @Output() create = new EventEmitter<any>();
+  
   Name: string="";
   Email: string="";
   password: string="";
@@ -24,10 +26,9 @@ export class UserFormComponent {
 
   onSubmit(form: NgForm) {
     // handle form submission here
-    console.log(form.value);
     this.service.createUser(form.value).subscribe({
       next: (res: any) => {
-        console.log(res);
+        this.create.emit(res)
       },
       error: (err: any) => {
         console.log(err);

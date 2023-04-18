@@ -12,11 +12,17 @@ export class UserService {
   }
 
   createUser(body:any){
-    return this.client.post("https://localhost:44309/api/Users/",body)
+    return this.client.post("https://localhost:44309/api/Users/create",body)
   }
 
   getUsers(){
-    return this.client.get("https://localhost:44309/api/Users/")
+    return this.client.get("https://localhost:44309/api/Users/all")
   }
 
+  getUser(id:number){
+    return this.client.get("https://localhost:44309/api/Users/" + id)
+  }
+  updateUser(new_user:any){
+    return this.client.put("https://localhost:44309/api/Users/" + new_user.userId, new_user)
+  }
 }

@@ -1,1 +1,45 @@
-<p>user-view works!</p>
+<div class="container" *ngIf="!is_editing">
+    <div class="left">
+        <h1>{{profile.name}}</h1>
+    </div>
+
+    <div class="center">
+        <div style="width:50%;">
+            <p>email:{{profile.email}}</p>
+            <p>C.V:{{profile.cv}} </p>
+            <p>English level: {{profile.englishLevel}}</p>
+        </div>
+        <div style="width:50%;">
+            <p>Tecnical Knowledge:</p>
+            <p>{{profile.experience}}</p>
+        </div>
+    </div>
+    <div>
+        <button (click)="editMode()">edit</button>
+    </div>
+</div>
+<div class="container" *ngIf="is_editing">
+    <div class="left">
+        <label for="name">Name</label><input type="text" name="name" id="name" value="{{profile.name}}" [(ngModel)]="profile.name"/>
+    </div>
+
+    <div class="center">
+        <div style="width:50%;">
+            <div class="">
+                <p>email:{{profile.email}}</p>
+            </div>
+            <div class="">
+                <label for="cv">CV:</label><input type="text" value="{{profile.cv}}" name="cv" id="email" [(ngModel)]="profile.cv">
+            </div>
+            <label for="englishLevel">English level</label><input type="text" value="{{profile.englishLevel}}" name="englishLevel" id="englishLevel" [(ngModel)]="profile.englishLevel">
+        </div>
+        <div style="width:50%;">
+            <p>Tecnical Knowledge:</p>
+            <textarea name="experience" id="experience" cols="30" rows="10" [(ngModel)]="profile.experience">{{ profile.experience }}</textarea>
+        </div>
+    </div>
+    <div>
+        <button (click) ="saveChanges()">Save</button>
+        <button (click)="editMode()">cancel</button>
+    </div>
+</div>

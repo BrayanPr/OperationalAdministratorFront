@@ -1,7 +1,15 @@
 <div class="container" *ngIf="action==''">    
     <div class="card" *ngFor="let item of crud_options" (click)="render_action(item.action)">
-        <h1 >{{item.name}}</h1>
+        <h1>{{item.name}}</h1>
+        <input *ngIf="item.action == 'search'" type="text" style="width:20px" [(ngModel)]="search"/>
     </div>
 </div>
 
-<app-user-form *ngIf="action=='create'" (cancel)="cancel_action()"></app-user-form>
+<app-user-form *ngIf="action=='create'" (cancel)="cancel_action()" (create)="create_user($event)" ></app-user-form>
+
+<app-user-list *ngIf="action=='list'" (cancel)="cancel_action()"/>
+
+<div *ngIf="user != null && action=='search'">
+    <app-user-view  [profile]="user"/>
+    <button class="cancel_button" *ngIf="user != null && action=='search'" (click)="cancel_action()">cancel</button>
+</div>
