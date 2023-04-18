@@ -11,7 +11,8 @@ export class HomeComponent {
     "userId": 0,
     "name": "",
     "email": "",
-    "teamId": null
+    "cv": "",
+    "experience":""
   }
   constructor(private service:UserService){
     service.getProfile().subscribe((res:any)=>{

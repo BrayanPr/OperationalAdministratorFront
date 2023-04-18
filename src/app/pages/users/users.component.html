@@ -1,0 +1,7 @@
+<div class="container" *ngIf="action==''">    
+    <div class="card" *ngFor="let item of crud_options" (click)="render_action(item.action)">
+        <h1 >{{item.name}}</h1>
+    </div>
+</div>
+
+<app-user-form *ngIf="action=='create'" (cancel)="cancel_action()"></app-user-form>

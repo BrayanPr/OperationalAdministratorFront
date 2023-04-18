@@ -14,7 +14,7 @@ export class LoginComponent {
 
     constructor(private service:AuthService, private app:AppComponent, private router:Router ){
       if(localStorage.getItem("token")){
-          router.navigate(['/home'])
+          router.navigate(['/'])
       }
     }
 
@@ -22,8 +22,9 @@ export class LoginComponent {
       this.service.auth(this.email, this.password).subscribe((res:any)=>{
         if(res.token){
           localStorage.setItem('token', res.token);
+          localStorage.setItem('role', res.role);
           this.app.is_loged_in=true;
-          this.router.navigate(['/home'])
+          this.router.navigate(['/'])
         }
       },
       (error:any)=>{

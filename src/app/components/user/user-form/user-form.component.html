@@ -1,0 +1,41 @@
+<div class="container">
+  <h1>Register a new user</h1>
+  <form #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
+    <div class="form-row">
+      <div class="form-column">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="Name" [(ngModel)]="Name" required maxlength="50">
+        
+        <label for="email">Email:</label>
+        <input type="email" id="Email" name="Email" [(ngModel)]="Email" required>
+        
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" [(ngModel)]="password" required minlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$">
+        
+        <label for="confirmPassword">Confirm Password:</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" required minlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$">
+        
+        <label for="role">Role:</label>
+        <select id="role" name="role" [(ngModel)]="role" required>
+          <option value="user" selected>User</option>
+          <option value="admin">Admin</option>
+        </select>
+      </div>
+      
+      <div class="form-column">
+        <label for="cv">CV:</label>
+        <input type="text" id="cv" name="cv" [(ngModel)]="cv">
+        
+        <label for="experience">Experience:</label>
+        <textarea id="experience" name="experience" [(ngModel)]="experience"></textarea>
+        
+        <label for="englishLevel">English Level:</label>
+        <input type="text" id="englishLevel" name="englishLevel" [(ngModel)]="englishLevel">
+        <div class="" style="display:flex;">
+          <input type="submit" value="Submit">
+          <button type="button" class="cancel_button" (click)="onCancel()">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

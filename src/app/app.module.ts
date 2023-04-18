@@ -9,6 +9,10 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HomeComponent } from './pages/home/home.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { UsersComponent } from './pages/users/users.component';
+import { UserFormComponent } from './components/user/user-form/user-form.component';
+import { UserListComponent } from './components/user/user-list/user-list.component';
+import { UserViewComponent } from './components/user/user-view/user-view.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +20,10 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     LoginComponent,
     NavbarComponent,
     HomeComponent,
+    UsersComponent,
+    UserFormComponent,
+    UserListComponent,
+    UserViewComponent,
   ],
   imports: [
     BrowserModule,

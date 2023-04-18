@@ -8,13 +8,18 @@ import { Location } from '@angular/common';
 })
 export class NavbarComponent {
 
-  constructor(private location:Location){}
-
   menuItems = [
-    { name: 'Home', link: '/' },
-    { name: 'About', link: '/about' },
-    { name: 'Contact', link: '/contact' }
+    { name: 'Home', link: '/'}
   ];
+  
+  constructor(private location:Location){
+    console.log(localStorage.getItem("role"))
+    if(localStorage.getItem("role") == "admin" || localStorage.getItem("role") == "super_admin"){
+      this.menuItems.push({ name: 'Users', link: '/users'},
+      { name: 'Teams', link: '/teams' },
+      { name: 'Accounts', link: '/accounts' })
+    }
+  }
 
   logout(){
     localStorage.removeItem('token')

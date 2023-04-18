@@ -10,4 +10,13 @@ export class UserService {
   getProfile(){
     return this.client.get("https://localhost:44309/api/Users/GetProfile")
   }
+
+  createUser(body:any){
+    return this.client.post("https://localhost:44309/api/Users/",body)
+  }
+
+  getUsers(){
+    return this.client.get("https://localhost:44309/api/Users/")
+  }
+
 }
