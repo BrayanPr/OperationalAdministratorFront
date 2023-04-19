@@ -1,0 +1,15 @@
+<div class="container">
+    <table>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Team</th>
+        </tr>
+        <tr *ngFor="let item of accounts">
+          <td>{{item.accountId}}</td>
+          <td>{{item.accountName}}</td>
+          <td>{{item.team != null ? item.team.name : ""}}</td>
+        </tr>
+      </table>
+      <button class="cancel_button" (click)="onCancel()">cencel</button>
+</div>

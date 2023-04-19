@@ -1,0 +1,18 @@
+<div style="display:flex; justify-content:center;">
+    <h1>Teams</h1> 
+</div>
+<div class="container" *ngIf="action==''">    
+    <div class="card" *ngFor="let item of crud_options" (click)="render_action(item.action)">
+        <h1>{{item.name}}</h1>
+        <input *ngIf="item.action == 'search'" type="text" style="width:20px" [(ngModel)]="search" id="search"/>
+    </div>
+</div>
+
+<app-team-form *ngIf="action=='create'" (cancel)="cancel_action()" (create)="create_team($event)" ></app-team-form>
+
+<app-team-list *ngIf="action=='list'" (cancel)="cancel_action()"/>
+
+<div *ngIf="team != null && action=='search'">
+    <app-team-view [team]="team"/>
+    <button class="cancel_button" *ngIf="team != null && action=='search'" (click)="cancel_action()">cancel</button>
+</div>

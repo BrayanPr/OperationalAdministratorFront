@@ -1,0 +1,19 @@
+<div class="container">
+    <h1>Create a new team</h1>
+    <form #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
+        <div class="form-row">
+            <div class="form-column">
+                <label for="name">Team Name:</label>
+                <input type="text" id="name" name="name" [(ngModel)]="Name" required maxlength="50">
+
+                <label for="description">Team Description:</label>
+                <textarea id="description" name="description" [(ngModel)]="Description" required></textarea>
+
+            </div>
+        </div>
+        <div class="" style="display:flex;">
+            <input type="submit" value="Create">
+            <button type="button" class="cancel_button" (click)="onCancel()">Cancel</button>
+        </div>
+    </form>
+</div>

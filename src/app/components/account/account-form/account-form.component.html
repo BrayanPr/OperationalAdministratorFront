@@ -1,0 +1,27 @@
+<div class="container">
+    <h1>Create a new team</h1>
+    <form #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
+        <div class="form-row">
+            <div class="form-column">
+                <label for="name">Team Name:</label>
+                <input type="text" id="accountName" name="accountName" [(ngModel)]="Name" required maxlength="50">
+
+                <label for="name">customer name:</label>
+                <input type="text" id="customerName" name="customerName" [(ngModel)]="customer_name" required maxlength="50">
+
+                <label for="name">operational manager:</label>
+                <input type="text" id="operationManagerName" name="operationManagerName" [(ngModel)]="operational_manager" required maxlength="50">
+
+                <label for="description">Team:</label>
+                <select name="teamId" id="teamId" [(ngModel)]="team">
+                    <option value="{{team.teamId}}" *ngFor="let team of teams">{{team.name}}</option>
+                </select>
+
+            </div>
+        </div>
+        <div class="" style="display:flex;">
+            <input type="submit" value="Create">
+            <button type="button" class="cancel_button" (click)="onCancel()">Cancel</button>
+        </div>
+    </form>
+</div>

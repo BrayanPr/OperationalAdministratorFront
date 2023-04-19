@@ -1,7 +1,10 @@
-<div class="container" *ngIf="action==''">    
+<div style="display:flex; justify-content:center;">
+    <h1>Users</h1> 
+</div>
+<div class="container" *ngIf="action==''">  
     <div class="card" *ngFor="let item of crud_options" (click)="render_action(item.action)">
         <h1>{{item.name}}</h1>
-        <input *ngIf="item.action == 'search'" type="text" style="width:20px" [(ngModel)]="search"/>
+        <input id="search" *ngIf="item.action == 'search'" type="text" style="width:20px" [(ngModel)]="search"/>
     </div>
 </div>
 

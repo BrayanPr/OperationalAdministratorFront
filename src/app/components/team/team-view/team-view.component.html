@@ -1,0 +1,30 @@
+<div class="container" *ngIf="!is_editing">
+    <div class="left">
+        <h1>{{team.name}}</h1>
+    </div>
+
+    <div class="center">
+        <div style="width:50%;">
+            <p>Description:</p>
+            <p>{{team.description}}</p>
+        </div>
+    </div>
+    <div>
+        <button (click)="editMode()">edit</button>
+    </div>
+</div>
+<div class="container" *ngIf="is_editing">
+    <div class="left">
+        <label for="name">Name</label><input type="text" name="name" id="name" value="{{team.name}}" [(ngModel)]="team.name"/>
+    </div>
+    <div class="center">
+        <div style="width:50%;">
+            <p>Description:</p>
+            <textarea name="description" id="description" cols="30" rows="10" [(ngModel)]="team.description">{{ team.description }}</textarea>
+        </div>
+    </div>
+    <div>
+        <button (click) ="saveChanges()">Save</button>
+        <button (click)="editMode()">cancel</button>
+    </div>
+</div>

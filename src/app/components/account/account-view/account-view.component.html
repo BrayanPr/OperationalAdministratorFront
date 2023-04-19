@@ -1,0 +1,52 @@
+<div class="container" *ngIf="!is_editing">
+    <div class="left">
+        <h1>{{account.accountName}}</h1>
+    </div>
+
+    <div style="display: flex;">
+        <div style="width:50%;">
+            <p>Customer:</p>
+            <p>{{account.customerName}}</p>
+        </div>
+        <div style="width:50%;">
+            <p>operation manager:</p>
+            <p>{{account.operationManagerName}}</p>
+        </div>
+    </div>
+    <div style="display: flex;" *ngIf="account.team">
+        <div style="width:50%;">
+            <p>Team name:</p>
+            <p>{{account.team.name}}</p>
+        </div>
+        <div style="width:50%;">
+            <p>Team Description:</p>
+            <p>{{account.team.description}}</p>
+        </div>
+    </div>
+    <div>
+        <button (click)="editMode()">edit</button>
+    </div>
+</div>
+<div class="container" *ngIf="is_editing">
+    <div class="left">
+        <label for="accountName">Name</label><input type="text" name="accountName" id="accountName" value="{{account.accountName}}" [(ngModel)]="account.accountName"/>
+    </div>
+    <div style="display: flex;">
+        <div style="width:50%;">
+            <p>Customer:</p>
+            <input type="text" name="customerName" id="customerName" value="{{account.customerName}}"  [(ngModel)]="account.customerName">
+            <!-- <p>{{account.customerName}}</p> -->
+        </div>
+        <div style="width:50%;">
+            <p>operation manager:</p>
+            <input type="text" name="operationManagerName" id="operationManagerName" value="{{account.operationManagerName}}"  [(ngModel)]="account.operationManagerName">
+        </div>
+    </div>
+    <select name="teamId" id="teamId" [value]="account.teamId" [(ngModel)]="account.teamId">
+        <option value="{{team.teamId}}" *ngFor="let team of teams">{{team.name}}</option>
+    </select>
+    <div>
+        <button (click) ="saveChanges()">Save</button>
+        <button (click)="editMode()">cancel</button>
+    </div>
+</div>
