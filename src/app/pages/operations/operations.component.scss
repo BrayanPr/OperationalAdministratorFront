@@ -1,0 +1,48 @@
+.container{
+    padding: 2.5%;
+    width: 90%;
+    margin: 2.5%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid red;
+    border-radius: 20px;
+    width: 20%; /* adjusted width */
+    height: 150px;
+    margin: 1%; /* adjusted margin */
+}
+
+.card:hover{
+    box-shadow: -2px -1px 18px 13px rgba(0,0,0,0.2) inset;
+    -webkit-box-shadow: -2px -1px 18px 13px rgba(0,0,0,0.2) inset;
+    -moz-box-shadow: -2px -1px 18px 13px rgba(0,0,0,0.2) inset;
+    color: red;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid red;
+    border-radius: 20px;
+    width: 20%; /* adjusted width */
+    height: 150px;
+    margin: 1%; /* adjusted margin */
+}
+
+.cancel_button{
+    border: 1px solid yellow;
+    color: black;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  .cancel_button:hover{
+    background-color: yellow;
+  }

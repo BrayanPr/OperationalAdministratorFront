@@ -1,0 +1,29 @@
+<div class="container">
+    <label for="userId">User:</label>
+    <select name="userId" id="userId" class="form-select"  [(ngModel)]="userId">
+      <option value={{user.userId}} *ngFor="let user of users">{{user.name}}</option>
+    </select> 
+    =>
+    <label for="teamId">Team:</label>
+    <select name="teamId" id="teamId" class="form-select" [(ngModel)]="teamId">
+      <option value={{team.teamId}} *ngFor="let team of teams">{{team.name}}</option>
+    </select>
+</div>
+<div style="display: flex; justify-content:center;">
+    <button type="button" class="btn btn-primary" (click)="MoveUser()">Move</button>
+    <button type="button" class="btn btn-secondary" (click)="onCancel()">Cancel</button>
+</div>
+
+<swal
+  #error
+  title="Error"
+  text="{{ error }}"
+  icon="error">
+</swal>
+
+<swal
+  #success
+  title="Success"
+  text="The movement has been made successfully"
+  icon="success">
+</swal>

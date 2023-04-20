@@ -1,0 +1,17 @@
+<div class="container">
+    <table >
+        <tr>
+          <th>User</th>
+          <th>Team left</th>
+          <th>Team Joined</th>
+          <th>Date</th>
+        </tr>
+        <tr *ngFor="let item of history">
+          <td >{{item.user != null ? item.user.name : "" }}</td>
+          <td>{{item.oldTeam}}</td>
+          <td>{{item.newTeam}}</td>
+          <td>{{item.date}}</td>
+        </tr>
+      </table>
+      <button class="cancel_button" (click)="onCancel()">cencel</button>
+</div>

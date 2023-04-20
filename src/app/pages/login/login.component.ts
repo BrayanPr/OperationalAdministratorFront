@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 import { AppComponent } from 'src/app/app.component';
 import { AuthService } from 'src/app/services/auth/auth.service';
 @Component({
@@ -8,7 +9,8 @@ import { AuthService } from 'src/app/services/auth/auth.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-    
+    @ViewChild('swal')
+    public readonly swal!: SwalComponent;
     email:any;
     password:any;
 
@@ -28,7 +30,8 @@ export class LoginComponent {
         }
       },
       (error:any)=>{
-        console.log(error)
+        console.log(error)  
+        this.swal.fire();
       })
 
 

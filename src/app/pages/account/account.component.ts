@@ -27,31 +27,14 @@ export class AccountComponent {
       aux.value = "";
       this.service.getAccount(this.search).subscribe({
         next: (res: any) => {
-          console.log(res);
           this.account = res
         },
         error: (err: any) => {
           console.log(err);
         },
         complete: () => {
-          if(this.account.teamId != null){
-            this.tservice.getTeam(this.account.teamId).subscribe(
-              {
-                next: (res: any) => {
-                  this.account.team = res;
-                },
-                error: (err: any) => {
-                  console.log(err);
-                },
-                complete: () => {
-                  console.log('Observable completed');
-                }
-              }
-            )
-          }
           this.action = action
           this.search = null;
-          console.log('Observable completed');
         }
       })
     }else{
@@ -59,6 +42,7 @@ export class AccountComponent {
     }
 
   }
+
   cancel_action(){
     this.action = "";
   }

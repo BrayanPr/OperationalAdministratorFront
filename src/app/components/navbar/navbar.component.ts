@@ -17,7 +17,8 @@ export class NavbarComponent {
     if(localStorage.getItem("role") == "admin" || localStorage.getItem("role") == "super_admin"){
       this.menuItems.push({ name: 'Users', link: '/users'},
       { name: 'Teams', link: '/teams' },
-      { name: 'Accounts', link: '/accounts' })
+      { name: 'Accounts', link: '/accounts' },
+      { name: 'Operations', link: '/operations'})
     }
   }
 

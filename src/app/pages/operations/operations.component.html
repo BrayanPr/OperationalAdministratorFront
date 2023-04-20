@@ -1,0 +1,12 @@
+<div style="display:flex; justify-content:center;">
+    <h1>Operations</h1> 
+</div>
+<div class="container" *ngIf="action==''">    
+    <div class="card" *ngFor="let item of crud_options" (click)="render_action(item.action)">
+        <h1>{{item.name}}</h1>
+    </div>
+</div>
+
+<app-move-user *ngIf="action == 'move'" (cancel)="cancel_action()"></app-move-user>
+
+<app-view-history *ngIf="action == 'list'" (cancel)="cancel_action()"></app-view-history>

@@ -1,0 +1,41 @@
+
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    margin: 1rem;
+  }
+  
+  select {
+    padding: 0.5rem;
+    margin: 0.5rem;
+    font-size: 1.2rem;
+    border: 2px solid #ccc;
+    border-radius: 0.5rem;
+  }
+  
+  select:focus {
+    outline: none;
+    border-color: blue;
+  }
+  label {
+    margin-right: 0.5rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  button {
+    margin-left: 1rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    background-color: chocolate;
+    color: white;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: red;
+  }  

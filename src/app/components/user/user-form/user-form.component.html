@@ -13,7 +13,7 @@
         <input type="password" id="password" name="password" [(ngModel)]="password" required minlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$">
         
         <label for="confirmPassword">Confirm Password:</label>
-        <input type="password" id="confirmPassword" name="confirmPassword" required minlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$">
+        <input type="password" id="confirmPassword" name="confirmPassword" [(ngModel)]="confirmPassword" required minlength="8" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$">
         
         <label for="role">Role:</label>
         <select id="role" name="role" [(ngModel)]="role" required>
@@ -30,7 +30,9 @@
         <textarea id="experience" name="experience" [(ngModel)]="experience"></textarea>
         
         <label for="englishLevel">English Level:</label>
-        <input type="text" id="englishLevel" name="englishLevel" [(ngModel)]="englishLevel">
+        <select id="englishLevel" name="englishLevel" [(ngModel)]="englishLevel">
+          <option (value)="level" *ngFor="let level of EnglishLevels">{{level}}</option>
+        </select>
         <div class="" style="display:flex;">
           <input type="submit" value="Submit">
           <button type="button" class="cancel_button" (click)="onCancel()">Cancel</button>
@@ -39,3 +41,16 @@
     </div>
   </form>
 </div>
+<swal
+  #error
+  title="Error"
+  text="{{ error }}"
+  icon="error">
+</swal>
+
+<swal
+  #success
+  title="Success"
+  text="The uses has been created successfully"
+  icon="success">
+</swal>

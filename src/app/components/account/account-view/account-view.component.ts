@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
+import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 import { AccountService } from 'src/app/services/account.service';
 import { TeamService } from 'src/app/services/team.service';
 
@@ -17,10 +18,14 @@ export class AccountViewComponent {
         console.log(err);
       },
       complete: () => {
-        console.log('Observable completed');
       }
     })
   }
+  
+  @ViewChild('error')
+  public readonly errorSwal!: SwalComponent;
+  @ViewChild('success')
+  public readonly successSwal!: SwalComponent;
   teams=[{
     name:"",
     teamId:"",
@@ -58,9 +63,10 @@ export class AccountViewComponent {
 
     saveChanges(){
       console.log(this.account)
-      this.service.updateAccount(this.account).subscribe({
+      if(!this.verifyForm(this.account)) this.errorSwal.fire()
+      else this.service.updateAccount(this.account).subscribe({
         next: (res: any) => {
-          console.log(this.account)
+          this.successSwal.fire()
           this.is_editing = false
         },
         error: (err: any) => {
@@ -71,4 +77,23 @@ export class AccountViewComponent {
         }
       })
     }
+    verifyForm(form:any){
+      let message = ""
+      let isValid = false
+      if(this.isNullOrEmpty(form.accountName)) message = "Name cannot be empty"
+  
+      else if(this.isNullOrEmpty(form.customerName)) message = "Customer name cannor be empty"
+  
+      else if(this.isNullOrEmpty(form.operationManagerName)) message = "Operational manager name cannot be empty"
+  
+      else if(form.teamId == null || form.teamId < 1 ) message = "Team is not valid"
+  
+      else isValid = true
+  
+      this.errorSwal.text = message
+  
+      return isValid
+    }
+  
+    isNullOrEmpty = (string:string) => (string == null || string == "")
 }

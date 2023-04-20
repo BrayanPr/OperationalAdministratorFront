@@ -30,8 +30,10 @@
             </div>
             <div class="">
                 <label for="cv">CV:</label><input type="text" value="{{profile.cv}}" name="cv" id="email" [(ngModel)]="profile.cv">
-            </div>
-            <label for="englishLevel">English level</label><input type="text" value="{{profile.englishLevel}}" name="englishLevel" id="englishLevel" [(ngModel)]="profile.englishLevel">
+            </div> 
+            <select id="englishLevel" name="englishLevel" [(ngModel)]="profile.englishLevel">
+                <option (value)="level" *ngFor="let level of EnglishLevels">{{level}}</option>
+            </select>
         </div>
         <div style="width:50%;">
             <p>Tecnical Knowledge:</p>
@@ -43,3 +45,18 @@
         <button (click)="editMode()">cancel</button>
     </div>
 </div>
+
+
+<swal
+  #error
+  title="Error"
+  text  = ""
+  icon="error">
+</swal>
+
+<swal
+  #success
+  title="Success"
+  text="The changes has been made successfully"
+  icon="success">
+</swal>

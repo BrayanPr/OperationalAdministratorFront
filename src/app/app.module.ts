@@ -21,6 +21,10 @@ import { AccountComponent } from './pages/account/account.component';
 import { AccountFormComponent } from './components/account/account-form/account-form.component';
 import { AccountViewComponent } from './components/account/account-view/account-view.component';
 import { AccountListComponent } from './components/account/account-list/account-list.component';
+import { OperationsComponent } from './pages/operations/operations.component';
+import { MoveUserComponent } from './components/operations/move-user/move-user.component';
+import { ViewHistoryComponent } from './components/operations/view-history/view-history.component';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 @NgModule({
   declarations: [
@@ -40,8 +44,12 @@ import { AccountListComponent } from './components/account/account-list/account-
     AccountFormComponent,
     AccountViewComponent,
     AccountListComponent,
+    OperationsComponent,
+    MoveUserComponent,
+    ViewHistoryComponent,
   ],
   imports: [
+    SweetAlert2Module.forRoot(),
     BrowserModule,
     AppRoutingModule,
     FormsModule,
