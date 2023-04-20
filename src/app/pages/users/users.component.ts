@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TeamService } from 'src/app/services/team.service';
 import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-users',
@@ -6,7 +7,7 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent {
-  constructor(private service:UserService){
+  constructor(private service:UserService,private tservice:TeamService){
 
   }
 
@@ -35,7 +36,11 @@ export class UsersComponent {
           console.log(err);
         },
         complete: () => {
-          console.log('Observable completed');
+          this.tservice.getTeam(this.user.teamId).subscribe({
+            next:(res:any)=>{
+              this.user.team = res;
+            }
+          })
         }
       })
     }else{
