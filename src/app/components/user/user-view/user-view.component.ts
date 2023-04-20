@@ -22,7 +22,12 @@ export class UserViewComponent {
                     "email": "",
                     "cv": "",
                     "experience":"",
-                    "englishLevel":""
+                    "englishLevel":"",
+                    "teamId":0,
+                    "team":{
+                      "name":"",
+                      "description":""
+                    }
                   }
 
     editMode(){
@@ -66,7 +71,9 @@ export class UserViewComponent {
         email: this.profile.email,
         cv: this.profile.cv,
         experience: this.profile.experience,
-        englishLevel: this.profile.englishLevel
+        englishLevel: this.profile.englishLevel,
+        teamId : this.profile.teamId,
+        team:this.profile.team
       }
       if(!this.verifyForm(this.profile)){
         this.errorSwal.fire()

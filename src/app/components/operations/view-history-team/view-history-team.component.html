@@ -1,0 +1,21 @@
+<div class="container">
+  <select name="teamId" id="teamId" [(ngModel)] = "selectedTeam" >
+      <option value="{{team.teamId}}" *ngFor="let team of teams" >{{team.name}}</option>
+  </select>
+  <button (click)="searchByTeam()">search</button>
+  <table >
+      <tr>
+        <th>User</th>
+        <th>Team left</th>
+        <th>Team Joined</th>
+        <th>Date</th>
+      </tr>
+      <tr *ngFor="let item of history">
+        <td >{{item.user != null ? item.user.name : "" }}</td>
+        <td>{{item.oldTeamObj.name}}</td>
+        <td>{{item.newTeamObj.name}}</td>
+        <td>{{item.date}}</td>
+      </tr>
+    </table>
+    <button class="cancel_button" (click)="onCancel()">cencel</button>
+</div>

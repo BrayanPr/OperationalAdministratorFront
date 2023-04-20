@@ -14,6 +14,9 @@ export class OperationsComponent {
   crud_options = [
     { name: 'Move user', action: 'move'},
     { name: 'View history', action: 'list'},
+    { name: 'View history by dates', action:"list_dates" },
+    { name: 'View history by user', action:"list_user" },
+    { name: 'View history by team', action:"list_team" }
   ]
   render_action(action:string){
     

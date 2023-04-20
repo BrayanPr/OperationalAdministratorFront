@@ -4,13 +4,16 @@ import { TeamService } from 'src/app/services/team.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
-  selector: 'app-view-history',
-  templateUrl: './view-history.component.html',
-  styleUrls: ['./view-history.component.scss']
+  selector: 'app-view-history-dates',
+  templateUrl: './view-history-dates.component.html',
+  styleUrls: ['./view-history-dates.component.scss']
 })
-export class ViewHistoryComponent {
-  
+export class ViewHistoryDatesComponent {
   @Output() cancel = new EventEmitter<any>();
+
+  startDate:Date= new Date();
+
+  endDate:Date = new Date();
 
   users:Array<{ userId: number; name: string; }>=[{
     name:"",
@@ -83,6 +86,30 @@ export class ViewHistoryComponent {
           element.user = user || { userId: -1, name: "None" };
         });
         console.log("finished")
+      }
+    })
+  }
+
+  searchByDates(){
+    this.service.getHistoryByDates(this.startDate, this.endDate).subscribe({
+      next: (res:any) => {
+        console.log(res)
+        this.history = res;
+      }, 
+      error : (err:any) => {
+        console.log(err)
+      },
+      complete : () => {
+        this.history.forEach(element => {
+          const newTeam = this.teams.find(team => team.teamId === element.newTeam);
+          element.newTeamObj = newTeam || { teamId: -1, name: "None" };
+
+          const oldTeam = this.teams.find(team => team.teamId === element.oldTeam);
+          element.oldTeamObj = oldTeam || { teamId: -1, name: "None" };
+
+          const user = this.users.find(user => user.userId === element.userId);
+          element.user = user || { userId: -1, name: "None" };
+        })
       }
     })
   }

@@ -1,4 +1,7 @@
 <div class="container">
+    <label for="startDate">Start date</label><input type="date" name="startDate" id="startDate"[(ngModel)] = "startDate"/>
+    <label for="endDate">End date</label><input type="date" name="endDate" id="endDate" [(ngModel)] = "endDate"/>
+    <button (click)="searchByDates()">search</button>
     <table >
         <tr>
           <th>User</th>

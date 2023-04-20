@@ -14,6 +14,16 @@
             <p>{{profile.experience}}</p>
         </div>
     </div>
+    <div class="left">
+        <h1>{{profile.team.name}}</h1>
+    </div>
+
+    <div class="center">
+        <div style="width:50%;">
+            <p>Description:</p>
+            <p>{{profile.team.description}}</p>
+        </div>
+    </div>
     <div>
         <button (click)="editMode()">edit</button>
     </div>

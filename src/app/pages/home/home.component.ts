@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TeamService } from 'src/app/services/team.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -13,12 +14,28 @@ export class HomeComponent {
     "email": "",
     "cv": "",
     "experience":"",
-    "englishLevel":""
+    "englishLevel":"",
+    "teamId":0,
+    "team":{
+      "name":"",
+      "description":""
+    }
   }
-  constructor(private service:UserService){
-    service.getProfile().subscribe((res:any)=>{
-      this.profile = res
-      console.log(res)
+  constructor(private service:UserService, private tservice:TeamService){
+    service.getProfile().subscribe({
+      next : (res:any)  => {
+        this.profile = res
+      },
+      error : (err:any) => {
+
+      },
+      complete : () => {
+        tservice.getTeam(this.profile.teamId).subscribe({
+          next:(res:any)=>{
+            this.profile.team = res;
+          }
+        })
+      }
     })
   }
 }

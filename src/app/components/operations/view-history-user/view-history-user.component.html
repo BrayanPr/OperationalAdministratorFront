@@ -1,4 +1,8 @@
 <div class="container">
+    <select name="userId" id="userId" [(ngModel)] = "selectedUser" >
+        <option value="{{user.userId}}" *ngFor="let user of users" >{{user.name}}</option>
+    </select>
+    <button (click)="searchByUser()">search</button>
     <table >
         <tr>
           <th>User</th>

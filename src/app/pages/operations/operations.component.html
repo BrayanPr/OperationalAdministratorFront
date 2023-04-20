@@ -10,3 +10,9 @@
 <app-move-user *ngIf="action == 'move'" (cancel)="cancel_action()"></app-move-user>
 
 <app-view-history *ngIf="action == 'list'" (cancel)="cancel_action()"></app-view-history>
+
+<app-view-history-dates *ngIf="action == 'list_dates'" (cancel)="cancel_action()"></app-view-history-dates>
+
+<app-view-history-user *ngIf="action == 'list_user'" (cancel)="cancel_action()"></app-view-history-user>
+
+<app-view-history-team *ngIf="action == 'list_team'" (cancel)="cancel_action()"></app-view-history-team>

@@ -20,4 +20,20 @@ export class OperationService {
     return this.client.get("https://localhost:44309/api/Operational/history")
   }
 
+  getHistoryByDates(startDate:Date, endDate:Date){
+    let body = {
+      startDate,
+      endDate
+    }
+    return this.client.post("https://localhost:44309/api/Operational/history/date", body)
+  }
+
+  getHistoryByUser(userId:number){
+    return this.client.get("https://localhost:44309/api/Operational/history/user?userId="+userId)
+  }
+
+  getHistoryByTeam(teamId:number){
+    return this.client.get("https://localhost:44309/api/Operational/history/team?teamId="+teamId)
+  }
+
 }

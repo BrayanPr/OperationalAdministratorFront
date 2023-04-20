@@ -25,6 +25,9 @@ import { OperationsComponent } from './pages/operations/operations.component';
 import { MoveUserComponent } from './components/operations/move-user/move-user.component';
 import { ViewHistoryComponent } from './components/operations/view-history/view-history.component';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { ViewHistoryDatesComponent } from './components/operations/view-history-dates/view-history-dates.component';
+import { ViewHistoryUserComponent } from './components/operations/view-history-user/view-history-user.component';
+import { ViewHistoryTeamComponent } from './components/operations/view-history-team/view-history-team.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +50,9 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
     OperationsComponent,
     MoveUserComponent,
     ViewHistoryComponent,
+    ViewHistoryDatesComponent,
+    ViewHistoryUserComponent,
+    ViewHistoryTeamComponent,
   ],
   imports: [
     SweetAlert2Module.forRoot(),
