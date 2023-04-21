@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 import { TeamService } from 'src/app/services/team.service';
 import { UserService } from 'src/app/services/user.service';
 @Component({
@@ -11,6 +12,9 @@ export class UsersComponent {
 
   }
 
+  @ViewChild('error')
+  public readonly errorSwal!: SwalComponent;
+  
   action=""
   user:any = null
   search:any = null
@@ -21,21 +25,25 @@ export class UsersComponent {
   ]
 
   render_action(action:string){
-    if(action == "search"){
+    if(action != "search") this.action = action;
+    else
+    {
       if(this.search == null) return
+      let _aux = this.search
+      this.search = null;
       let aux = document.getElementById("search") as HTMLInputElement
       aux.value = "";
-      this.service.getUser(this.search).subscribe({
+      this.service.getUser(_aux).subscribe({
         next: (res: any) => {
-          console.log(res);
-          this.search = null;
           this.user = res
           this.action = action
         },
         error: (err: any) => {
-          console.log(err);
+          this.errorSwal.text = err.error.Message;
+          this.errorSwal.fire();
         },
         complete: () => {
+          if(this.user.teamId == null) return
           this.tservice.getTeam(this.user.teamId).subscribe({
             next:(res:any)=>{
               this.user.team = res;
@@ -43,8 +51,6 @@ export class UsersComponent {
           })
         }
       })
-    }else{
-      this.action = action;
     }
 
   }

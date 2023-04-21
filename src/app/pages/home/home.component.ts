@@ -30,7 +30,8 @@ export class HomeComponent {
 
       },
       complete : () => {
-        tservice.getTeam(this.profile.teamId).subscribe({
+        if(this.profile.teamId == null) return
+        else tservice.getTeam(this.profile.teamId).subscribe({
           next:(res:any)=>{
             this.profile.team = res;
           }

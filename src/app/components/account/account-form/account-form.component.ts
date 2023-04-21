@@ -17,7 +17,8 @@ export class AccountFormComponent {
         this.teams = res
       },
       error: (err: any) => {
-        console.log(err);
+        this.errorSwal.text=err.error.Message;
+        this.errorSwal.fire();
       },
       complete: () => {
         console.log('Observable completed');
@@ -62,8 +63,8 @@ export class AccountFormComponent {
       },
       error: (err: any) => {
         console.log(err);
-        this.errorSwal.text="Error saving the register"
-        this.errorSwal.fire()
+        this.errorSwal.text=err.error.Message;
+        this.errorSwal.fire();
       },
       complete: () => {
         console.log('Observable completed');

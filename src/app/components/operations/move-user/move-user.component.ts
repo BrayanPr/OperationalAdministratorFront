@@ -17,21 +17,20 @@ export class MoveUserComponent {
         this.teams = res;
       },
       error: (err: any) => {
-        console.log(err);
+        this.errorSwal.text=err.error.Message;
+        this.errorSwal.fire();
       },
       complete: () => {
       }
     })
-    
-
-
+  
     uservice.getUsers().subscribe({
       next: (res:any) => {
-        console.log(res)
         this.users = res;
       },
       error: (err:any) => {
-        console.log(err);
+        this.errorSwal.text=err.error.Message;
+        this.errorSwal.fire();
       },
       complete: () => {
       }
@@ -67,11 +66,11 @@ export class MoveUserComponent {
     if(!this.verifyForm(form)) this.errorSwal.fire()
     else this.service.moveUser(this.userId,this.teamId).subscribe({
       next: (res:any)=>{
-        console.log(res);
         this.successSwal.fire()
       },
       error: (err:any) => {
-        console.log(err);
+        this.errorSwal.text=err.error.Message;
+        this.errorSwal.fire();
       },
       complete: () => {
       }

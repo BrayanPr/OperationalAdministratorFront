@@ -32,7 +32,9 @@ export class OperationService {
   getHistoryByUser(userId:number){
     return this.client.get(this.app.master_url + "Operational/history/user?userId="+userId)
   }
-
+  getHistoryByUserName(userName:string){
+    return this.client.get(this.app.master_url + "Operational/history/user/"+userName)
+  }
   getHistoryByTeam(teamId:number){
     return this.client.get(this.app.master_url + "Operational/history/team?teamId="+teamId)
   }

@@ -10,5 +10,5 @@ import { Component, Injectable } from '@angular/core';
 export class AppComponent {
   title = 'administracion_de_opreacion';
   is_loged_in= localStorage.getItem('token') ? true : false;
-  master_url = "https://localhost:51553/api/"
+  master_url = "https://localhost:65239/api/"
 }

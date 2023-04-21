@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
+import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 import { OperationService } from 'src/app/services/operation.service';
 import { TeamService } from 'src/app/services/team.service';
 import { UserService } from 'src/app/services/user.service';
@@ -10,12 +11,18 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class ViewHistoryUserComponent {
   @Output() cancel = new EventEmitter<any>();
+  @ViewChild('error')
+  public readonly errorSwal!: SwalComponent;
+  @ViewChild('success')
+  public readonly successSwal!: SwalComponent;
 
   startDate:Date= new Date();
 
   endDate:Date = new Date();
 
   selectedUser=0;
+
+  userName =""
 
   users:Array<{ userId: number; name: string; }>=[{
     name:"",
@@ -55,7 +62,8 @@ export class ViewHistoryUserComponent {
         this.users = res
       },
       error: (err:any) => {
-        console.log(err)
+        this.errorSwal.text=err.error.Message;
+        this.errorSwal.fire();
       }
     })
     
@@ -64,7 +72,8 @@ export class ViewHistoryUserComponent {
         this.teams = res
       },
       error: (err:any) => {
-        console.log(err)
+        this.errorSwal.text=err.error.Message;
+        this.errorSwal.fire();
       }
     })
 
@@ -74,7 +83,8 @@ export class ViewHistoryUserComponent {
         this.history = res
       },
       error: (err:any) => {
-        console.log(err)
+        this.errorSwal.text=err.error.Message;
+        this.errorSwal.fire();
       },
       complete:() => {
         this.history.forEach(element => {
@@ -93,13 +103,14 @@ export class ViewHistoryUserComponent {
   }
 
   searchByUser(){
-    this.service.getHistoryByUser(this.selectedUser).subscribe({
+    this.service.getHistoryByUserName(this.userName).subscribe({
       next: (res:any) => {
         console.log(res)
         this.history = res;
       }, 
       error : (err:any) => {
-        console.log(err)
+        this.errorSwal.text=err.error.Message;
+        this.errorSwal.fire();
       },
       complete : () => {
         this.history.forEach(element => {

@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
+import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 import { OperationService } from 'src/app/services/operation.service';
 import { TeamService } from 'src/app/services/team.service';
 import { UserService } from 'src/app/services/user.service';
@@ -10,6 +11,10 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class ViewHistoryTeamComponent {
   @Output() cancel = new EventEmitter<any>();
+  @ViewChild('error')
+  public readonly errorSwal!: SwalComponent;
+  @ViewChild('success')
+  public readonly successSwal!: SwalComponent;
 
   startDate:Date= new Date();
 
@@ -55,7 +60,8 @@ export class ViewHistoryTeamComponent {
         this.users = res
       },
       error: (err:any) => {
-        console.log(err)
+        this.errorSwal.text=err.error.Message;
+        this.errorSwal.fire();
       }
     })
     
@@ -64,7 +70,8 @@ export class ViewHistoryTeamComponent {
         this.teams = res
       },
       error: (err:any) => {
-        console.log(err)
+        this.errorSwal.text=err.error.Message;
+        this.errorSwal.fire();
       }
     })
 
@@ -74,7 +81,8 @@ export class ViewHistoryTeamComponent {
         this.history = res
       },
       error: (err:any) => {
-        console.log(err)
+        this.errorSwal.text=err.error.Message;
+        this.errorSwal.fire();
       },
       complete:() => {
         this.history.forEach(element => {
@@ -95,11 +103,11 @@ export class ViewHistoryTeamComponent {
   searchByTeam(){
     this.service.getHistoryByTeam(this.selectedTeam).subscribe({
       next: (res:any) => {
-        console.log(res)
         this.history = res;
       }, 
       error : (err:any) => {
-        console.log(err)
+        this.errorSwal.text=err.error.Message;
+        this.errorSwal.fire();
       },
       complete : () => {
         this.history.forEach(element => {

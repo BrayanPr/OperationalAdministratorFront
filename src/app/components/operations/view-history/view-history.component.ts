@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
+import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 import { OperationService } from 'src/app/services/operation.service';
 import { TeamService } from 'src/app/services/team.service';
 import { UserService } from 'src/app/services/user.service';
@@ -9,7 +10,11 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./view-history.component.scss']
 })
 export class ViewHistoryComponent {
-  
+  @ViewChild('error')
+  public readonly errorSwal!: SwalComponent;
+  @ViewChild('success')
+  public readonly successSwal!: SwalComponent;
+
   @Output() cancel = new EventEmitter<any>();
 
   users:Array<{ userId: number; name: string; }>=[{
@@ -50,7 +55,8 @@ export class ViewHistoryComponent {
         this.users = res
       },
       error: (err:any) => {
-        console.log(err)
+        this.errorSwal.text=err.error.Message;
+        this.errorSwal.fire();
       }
     })
     
@@ -59,17 +65,18 @@ export class ViewHistoryComponent {
         this.teams = res
       },
       error: (err:any) => {
-        console.log(err)
+        this.errorSwal.text=err.error.Message;
+        this.errorSwal.fire();
       }
     })
 
     service.getHistory().subscribe({
       next: (res:any) => {
-        console.log(res)
         this.history = res
       },
       error: (err:any) => {
-        console.log(err)
+        this.errorSwal.text=err.error.Message;
+        this.errorSwal.fire();
       },
       complete:() => {
         this.history.forEach(element => {
@@ -82,7 +89,6 @@ export class ViewHistoryComponent {
           const user = this.users.find(user => user.userId === element.userId);
           element.user = user || { userId: -1, name: "None" };
         });
-        console.log("finished")
       }
     })
   }

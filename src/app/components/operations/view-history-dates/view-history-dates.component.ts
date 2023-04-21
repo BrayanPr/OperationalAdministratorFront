@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
+import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 import { OperationService } from 'src/app/services/operation.service';
 import { TeamService } from 'src/app/services/team.service';
 import { UserService } from 'src/app/services/user.service';
@@ -10,6 +11,10 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class ViewHistoryDatesComponent {
   @Output() cancel = new EventEmitter<any>();
+  @ViewChild('error')
+  public readonly errorSwal!: SwalComponent;
+  @ViewChild('success')
+  public readonly successSwal!: SwalComponent;
 
   startDate:Date= new Date();
 
@@ -53,7 +58,8 @@ export class ViewHistoryDatesComponent {
         this.users = res
       },
       error: (err:any) => {
-        console.log(err)
+        this.errorSwal.text=err.error.Message;
+        this.errorSwal.fire();
       }
     })
     
@@ -62,7 +68,8 @@ export class ViewHistoryDatesComponent {
         this.teams = res
       },
       error: (err:any) => {
-        console.log(err)
+        this.errorSwal.text=err.error.Message;
+        this.errorSwal.fire();
       }
     })
 
@@ -72,17 +79,18 @@ export class ViewHistoryDatesComponent {
         this.history = res
       },
       error: (err:any) => {
-        console.log(err)
+        this.errorSwal.text=err.error.Message;
+        this.errorSwal.fire();
       },
       complete:() => {
         this.history.forEach(element => {
-          const newTeam = this.teams.find(team => team.teamId === element.newTeam);
+          const newTeam = this.teams.find(team => team.teamId == element.newTeam);
           element.newTeamObj = newTeam || { teamId: -1, name: "None" };
 
-          const oldTeam = this.teams.find(team => team.teamId === element.oldTeam);
+          const oldTeam = this.teams.find(team => team.teamId == element.oldTeam);
           element.oldTeamObj = oldTeam || { teamId: -1, name: "None" };
 
-          const user = this.users.find(user => user.userId === element.userId);
+          const user = this.users.find(user => user.userId == element.userId);
           element.user = user || { userId: -1, name: "None" };
         });
         console.log("finished")

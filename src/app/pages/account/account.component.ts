@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { SwalComponent } from '@sweetalert2/ngx-sweetalert2';
 import { AccountService } from 'src/app/services/account.service';
 import { TeamService } from 'src/app/services/team.service';
 
@@ -10,7 +11,9 @@ import { TeamService } from 'src/app/services/team.service';
 export class AccountComponent {
 
   constructor(private service:AccountService, private tservice:TeamService){}
-
+  @ViewChild('error')
+  public readonly errorSwal!: SwalComponent;
+  
   action=""
   account:any = null
   search:any = null
@@ -20,27 +23,24 @@ export class AccountComponent {
     { name: 'Search:', action: 'search'},
   ]
   render_action(action:string){
-    if(action == "search"){
-      
+    if(action != "search")  this.action = action;
+    else{
       if(this.search == null) return
       let aux = document.getElementById("search") as HTMLInputElement
       aux.value = "";
-      this.service.getAccount(this.search).subscribe({
+      let _aux = this.search
+      this.search = null
+      this.service.getAccount(_aux).subscribe({
         next: (res: any) => {
           this.account = res
+          this.action = action
         },
         error: (err: any) => {
-          console.log(err);
-        },
-        complete: () => {
-          this.action = action
-          this.search = null;
+          this.errorSwal.text = err.error.Message;
+          this.errorSwal.fire();
         }
       })
-    }else{
-      this.action = action;
     }
-
   }
 
   cancel_action(){

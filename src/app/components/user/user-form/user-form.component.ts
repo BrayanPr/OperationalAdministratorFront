@@ -43,7 +43,7 @@ export class UserFormComponent {
       },
       error: (err: any) => {
         console.log(err);
-        this.errorSwal.text="Error saving the register"
+        this.errorSwal.text = err.error.Message  
         this.errorSwal.fire()
       },
       complete: () => {

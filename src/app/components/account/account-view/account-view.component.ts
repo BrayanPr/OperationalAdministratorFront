@@ -70,7 +70,8 @@ export class AccountViewComponent {
           this.is_editing = false
         },
         error: (err: any) => {
-          console.log(err);
+          this.errorSwal.text=err.error.Message;
+          this.errorSwal.fire();
         },
         complete: () => {
           console.log('Observable completed');

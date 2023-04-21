@@ -16,3 +16,11 @@
     <app-account-view [account]="account"/>
     <button class="cancel_button" *ngIf="account != null && action=='search'" (click)="cancel_action()">cancel</button>
 </div>
+
+
+<swal
+  #error
+  title="Error"
+  text="{{ error }}"
+  icon="error">
+</swal>
