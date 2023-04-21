@@ -1,23 +1,24 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { AppComponent } from '../app.component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OperationService {
 
-  constructor(private client:HttpClient) { }
+  constructor(private client:HttpClient, private app:AppComponent) { }
 
   moveUser(userID:number, teamID:number){
     let body = {
       userID,
       teamID
     }
-    return this.client.post("https://localhost:44309/api/Operational/move", body)
+    return this.client.post(this.app.master_url + "Operational/move", body)
   }
 
   getHistory(){
-    return this.client.get("https://localhost:44309/api/Operational/history")
+    return this.client.get(this.app.master_url + "Operational/history")
   }
 
   getHistoryByDates(startDate:Date, endDate:Date){
@@ -25,15 +26,15 @@ export class OperationService {
       startDate,
       endDate
     }
-    return this.client.post("https://localhost:44309/api/Operational/history/date", body)
+    return this.client.post(this.app.master_url + "Operational/history/date", body)
   }
 
   getHistoryByUser(userId:number){
-    return this.client.get("https://localhost:44309/api/Operational/history/user?userId="+userId)
+    return this.client.get(this.app.master_url + "Operational/history/user?userId="+userId)
   }
 
   getHistoryByTeam(teamId:number){
-    return this.client.get("https://localhost:44309/api/Operational/history/team?teamId="+teamId)
+    return this.client.get(this.app.master_url + "Operational/history/team?teamId="+teamId)
   }
 
 }
